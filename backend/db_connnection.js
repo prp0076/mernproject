@@ -1,13 +1,8 @@
-const mongoose = require("mongoose");
-const Connectdb = async ()=>{
-    try{
-      const connect = await mongoose.connect('mongodb+srv://fevfood:fevfood@cluster0.fanyayv.mongodb.net/?retryWrites=true&w=majority');
-    //   console.log("Database name",connect.connection.host,connect.connection.name)
-    console.log("connected")
-    }
-    catch(err){
-     console.log(err);
-     process.exit(1);
-    }
+const mongoose = require('mongoose');
+const mongoUri = 'mongodb+srv://fevfood:fevfood@cluster0.fanyayv.mongodb.net/fevfoodmern?retryWrites=true&w=majority';
+const mongoDB= async ()=>{
+     const con =await mongoose.connect(mongoUri,{useNewUrlParser: true})
+    console.log("connected");
 }
-module.exports = Connectdb
+
+module.exports = mongoDB
