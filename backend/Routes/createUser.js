@@ -1,7 +1,11 @@
 const express = require("express");
 const Router = express.Router();//router call yahi pr hora hai
 const User = require("../models/User")
-Router.post("/createuser",async (req,res)=>{
+Router.post("/createuser",
+body('username').isEmail(),
+// password must be at least 5 chars long
+body('password').isLength({ min: 5 }),
+async (req,res)=>{
  try {
    await User.create({
        // we can directly send data through below method
