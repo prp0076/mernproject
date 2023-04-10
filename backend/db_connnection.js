@@ -10,8 +10,8 @@ const Connectdb = async ()=>{
 
         const items = await fetched_data.find({}).toArray(); // Await the result of the find() method
 
-        console.log(items);
-        // console.log('connnected');
+        // console.log(items);
+        console.log('connnected');
     }
     catch(err){
         console.log(err);
