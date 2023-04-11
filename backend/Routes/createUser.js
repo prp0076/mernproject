@@ -29,5 +29,30 @@ async (req,res)=>{
   console.log(error)  
  }
 })
+
+
+
+Router.post("/loginuser",
+[body('email').isEmail(),body('password').isLength({ min: 5 })],
+async (req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    let email=req.body.email
+   try {
+     let userdata= await User.findOne({email})
+    if(!userdata){
+        return res.status(400).json({ errors:"Try Login with correct credentials"});
+    }
+    if(!req.body.password === userdata.password){
+        return res.status(400).json({ errors:"Try Login with correct credentials"});
+    }
+    return res.json({success:true})
+ } catch (error) {
+  res.json({success:false});
+  console.log(error)  
+ }
+})
 module.exports = Router
-//above we create user 
+//above we create and login user 
