@@ -45,7 +45,7 @@ async (req,res)=>{
     if(!userdata){
         return res.status(400).json({ errors:"Try Login with correct credentials"});
     }
-    if(!req.body.password === userdata.password){
+    if(req.body.password !== userdata.password){
         return res.status(400).json({ errors:"Try Login with correct credentials"});
     }
     return res.json({success:true})
