@@ -11,7 +11,7 @@ export default function Signup() {
      e.preventDefault();
      const response =await fetch("http://localhost:5000/api/createuser",{
         method:'POST',
-        header:{
+        headers:{
             'Content-Type':'application/json'
         },
         body:JSON.stringify({name:cred.name,email:cred.email,password:cred.password,location:cred.geolocation})
@@ -35,8 +35,8 @@ export default function Signup() {
         <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div className="mb-3">
-        <label htmlFor="exampleInputPassword1" className="form-label">Address</label>
-        <input type="password" className="form-control" id="exampleInputPassword1" name='geolocation' value={cred.geolocation} onChange={onChange}/>
+        <label htmlFor="exampleInputAddress" className="form-label">Address</label>
+        <input type="text" className="form-control"  name='geolocation' value={cred.geolocation} onChange={onChange}/>
         </div>
         <div className="mb-3">
         <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
