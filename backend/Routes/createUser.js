@@ -42,6 +42,7 @@ async (req,res)=>{
    let email=req.body.email
    try {
      let userdata= await User.findOne({email})
+     console.log(userdata)
     if(!userdata){
         return res.status(400).json({ errors:"Try Login with correct credentials"});
     }
