@@ -21,7 +21,9 @@ export default function Login() {
       alert("Enter valid credentials");
     }
     if (json.success) {
-    navigate("/")
+    localStorage.setItem("authToken",json.authToken)
+    console.log(localStorage.getItem("authToken"))
+    navigate("/");
     }
   };
   return (

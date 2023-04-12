@@ -2,6 +2,9 @@ const express = require("express");
 const { body, validationResult } = require('express-validator');
 const Router = express.Router();//router call yahi pr hora hai
 const User = require("../models/User")
+const jwt = require('jsonwebtoken')
+const bcrypt = require("bcryptjs")
+const jwtSecret = "mynameisPushprajparoha"
 Router.post("/createuser",
 [body('email').isEmail(),body('name','incorrect name').isLength({min:5}),body('password').isLength({ min: 5 })],
 async (req,res)=>{
@@ -9,6 +12,13 @@ async (req,res)=>{
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
+
+
+    //jwt bcrypt
+    const salt = await bcrypt.genSalt(10);
+    const secPass=await bcrypt.hash(req.body.password,salt)
+
+
  try {
    await User.create({
        // we can directly send data through below method
@@ -19,7 +29,7 @@ async (req,res)=>{
 
        //if we want to send through body 
         name:req.body.name,
-        password:req.body.password,
+        password:secPass,
         email:req.body.email,
         location:req.body.location
     })
@@ -46,10 +56,22 @@ async (req,res)=>{
     if(!userdata){
         return res.status(400).json({ errors:"Try Login with correct credentials"});
     }
-    if(req.body.password !== userdata.password){
+
+    //jwt pass compare
+    const pwtcomparew = await bcrypt.compare(req.body.password,userdata.password)
+    if(!pwtcomparew){
         return res.status(400).json({ errors:"Try Login with correct credentials"});
     }
-    return res.json({success:true})
+    const data ={
+        user:{
+            id:userdata.id
+        }
+    }
+    const authToken = jwt.sign(data,jwtSecret)
+    return res.json({
+        success:true ,
+        authToken:authToken
+    })
  } catch (error) {
   res.json({success:false});
   console.log(error)  
