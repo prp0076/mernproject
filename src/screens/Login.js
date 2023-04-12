@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 export default function Login() {
+  let navigate=useNavigate()
   const [cred, setCred] = useState({ email: "", password: "" });
   const onChange = (e) => {
     setCred({ ...cred, [e.target.name]: e.target.value });
@@ -18,6 +19,9 @@ export default function Login() {
     console.log(json);
     if (!json.success) {
       alert("Enter valid credentials");
+    }
+    if (json.success) {
+    navigate("/")
     }
   };
   return (
