@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Card() {
   return (
-    <div>
+    <div> 
         <div>
         <div className="card mt-3" style={{"width": "18rem","maxHeight":"360px"}}>
         <img src="https://cdn.pixabay.com/photo/2016/10/25/13/42/indian-1768906__340.jpg" className="card-img-top" alt="..."/>
