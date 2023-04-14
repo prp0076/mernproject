@@ -15,7 +15,7 @@ export default function () {
       }
     });
     response = await response.json();
-    // console.log(response[0],response[1]);
+    // console.log(response[0],response[1]);\
     setFooditem(response[0]);
     setFoodCat(response[1]);
   }
