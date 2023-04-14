@@ -17,7 +17,7 @@ export default function Cart() {
   // }
 
   const handleCheckOut = async () => {
-    let userEmail = localStorage.getItem("useremail");
+    let useremail = localStorage.getItem("useremail");
     // console.log(data,localStorage.getItem("userEmail"),new Date())
     let response = await fetch("http://localhost:5000/api/orderData", {
       // credentials: 'include',
@@ -28,7 +28,7 @@ export default function Cart() {
       },
       body: JSON.stringify({
         order_data: data,
-        email: userEmail,
+        email: useremail,
         order_date: new Date().toDateString()
       })
     });
