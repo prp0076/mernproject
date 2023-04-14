@@ -67,8 +67,8 @@ export default function () {
                 
                 return (
                   <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card foodname={filteritems.name} options={filteritems.options[0]}
-                    imgsrc={filteritems.img}></Card>
+                    <Card  options={filteritems.options[0]}
+                    fooditem={filteritems}></Card>
                   </div>
                 )
               }) : "No Such Data Found"}
