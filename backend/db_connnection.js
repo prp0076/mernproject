@@ -12,11 +12,11 @@ const Connectdb = async ()=>{
         // console.log(foodCat)
         const items = await fetched_data.find({}).toArray(); // Await the result of the find() method
         const cat= await foodCat.find({}).toArray();
-        console.log(cat)
+        // console.log(cat)
         
         global.db_items=items;
         global.food_cat=cat;
-        console.log(items);
+        // console.log(items);
         // console.log(items);
         console.log('connnected');
     }
