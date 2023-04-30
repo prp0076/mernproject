@@ -12,7 +12,7 @@ export default function Login() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      }, 
       body: JSON.stringify({ email: cred.email, password: cred.password }),
     });
     const json = await response.json();
@@ -20,6 +20,8 @@ export default function Login() {
     if (!json.success) {
       alert("Enter valid credentials");
     }
+    //store auth token  from createUser  in local storage
+    //store email in local sctorage
     if (json.success) {
       localStorage.setItem("useremail",cred.email)
     localStorage.setItem("authToken",json.authToken)
