@@ -4,9 +4,9 @@ import Footer from '../components/Footer'
 import Card from '../components/Card'
 
 export default function () {
-  const [foodcat,setFoodCat]=useState([]); 
+  const [foodcat,setFoodCat]=useState([]);  
   const [fooditem,setFooditem]=useState([]); 
-  const [search ,setSearch]=useState([])
+  const [search ,setSearch]=useState([]);
   const loaddata = async ()=>{
     let response = await fetch("http://localhost:5000/api/fooddata",{
       method:"POST",

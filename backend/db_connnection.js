@@ -7,12 +7,12 @@ const Connectdb = async ()=>{
         console.log("Database name",connect.connection.host,connect.connection.name);
 
         const fetched_data = mongoose.connection.db.collection("db_items");
-        // console.log(fetched_data)
+        console.log(fetched_data)
         const foodCat= mongoose.connection.db.collection("food_cat");
-        // console.log(foodCat)
+        console.log(foodCat)
         const items = await fetched_data.find({}).toArray(); // Await the result of the find() method
         const cat= await foodCat.find({}).toArray();
-        // console.log(cat)
+        console.log(cat)
         
         global.db_items=items;
         global.food_cat=cat;
